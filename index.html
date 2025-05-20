@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智联物流 - 全球智慧物流解决方案提供商</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6A00', // 主色调：橙色
+                        secondary: '#003D79', // 辅助色：深蓝色
+                        neutral: {
+                            100: '#F8FAFC',
+                            200: '#E2E8F0',
+                            300: '#CBD5E1',
+                            400: '#94A3B8',
+                            500: '#64748B',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1E293B',
+                            900: '#0F172A',
+                        }
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'custom': '0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03)',
+                        'custom-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                    }
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-15px); }
+                100% { transform: translateY(0px); }
+            }
+            .nav-link {
+                @apply relative text-neutral-700 hover:text-primary transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full;
+            }
+            .service-card {
+                @apply bg-white rounded-xl overflow-hidden shadow-custom hover:shadow-custom-hover transition-all duration-500 hover:-translate-y-2;
+            }
+            .stat-card {
+                @apply bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center transition-all duration-300 hover:bg-white/20 hover:-translate-y-2 hover:shadow-lg;
+            }
+            .btn-primary {
+                @apply bg-primary text-white font-medium px-6 py-3 rounded-lg hover:bg-primary/90 transition-all shadow-lg hover:shadow-primary/30 hover:-translate-y-1 duration-300;
+            }
+            .btn-secondary {
+                @apply bg-white text-primary font-medium px-6 py-3 rounded-lg hover:bg-neutral-100 transition-all shadow-md hover:shadow-lg hover:-translate-y-1 duration-300;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter text-neutral-800">
+    <!-- 导航栏 -->
+    <nav id="main-nav" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="text-primary text-2xl font-bold">智联物流</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#services" class="nav-link">服务</a>
+                <a href="#network" class="nav-link">网络</a>
+                <a href="#tracking" class="nav-link">追踪</a>
+                <a href="#about" class="nav-link">关于我们</a>
+                <a href="#contact" class="nav-link">联系我们</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-neutral-700 hover:text-primary">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="#services" class="text-neutral-700 hover:text-primary transition-colors py-2">服务</a>
+                <a href="#network" class="text-neutral-700 hover:text-primary transition-colors py-2">网络</a>
+                <a href="#tracking" class="text-neutral-700 hover:text-primary transition-colors py-2">追踪</a>
+                <a href="#about" class="text-neutral-700 hover:text-primary transition-colors py-2">关于我们</a>
+                <a href="#contact" class="text-neutral-700 hover:text-primary transition-colors py-2">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="relative h-screen overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-secondary/80 to-secondary/40 z-10"></div>
+        <div class="absolute inset-0">
+            <img src="https://picsum.photos/id/1071/1920/1080" alt="全球物流服务" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-20 h-full flex items-center">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl">
+                    <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-white leading-tight text-shadow mb-6">
+                        连接世界<br>智慧物流
+                    </h1>
+                    <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 mb-8 max-w-2xl">
+                        作为全球领先的物流解决方案提供商，我们致力于为客户提供高效、安全、可靠的物流服务，连接全球供应链网络。
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#services" class="btn-primary">
+                            <i class="fa-solid fa-truck mr-2"></i> 了解服务
+                        </a>
+                        <a href="#contact" class="btn-secondary">
+                            <i class="fa-solid fa-phone mr-2"></i> 联系我们
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-0 right-0 z-20">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="stat-card">
+                        <div class="text-4xl font-bold text-primary mb-2">150+</div>
+                        <div class="text-white/90">覆盖国家和地区</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-4xl font-bold text-primary mb-2">500万+</div>
+                        <div class="text-white/90">年处理货量(T)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-4xl font-bold text-primary mb-2">99.7%</div>
+                        <div class="text-white/90">准时送达率</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-5 left-0 right-0 flex justify-center z-20">
+            <a href="#tracking" class="text-white animate-bounce">
+                <i class="fa-solid fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- 货物追踪 -->
+    <section id="tracking" class="py-20 bg-neutral-100">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12 relative overflow-hidden">
+                <div class="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full"></div>
+                <div class="absolute -bottom-10 -left-10 w-20 h-20 bg-primary/10 rounded-full"></div>
+                
+                <div class="text-center mb-10">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-800">实时追踪您的货物</h2>
+                    <p class="text-neutral-600 mt-4">输入您的运单号，随时查看货物运输状态</p>
+                </div>
+                
+                <form class="flex flex-col md:flex-row gap-4 relative z-10">
+                    <input type="text" placeholder="请输入运单号" class="w-full px-5 py-4 rounded-lg border-2 border-neutral-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all">
+                    <button type="submit" class="btn-primary whitespace-nowrap">
+                        <i class="fa-solid fa-search mr-2"></i> 立即查询
+                    </button>
+                </form>
+                
+                <div class="mt-12">
+                    <h4 class="font-medium text-neutral-800 mb-6">最近运输状态</h4>
+                    <div class="relative">
+                        <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-neutral-200"></div>
+                        <div class="space-y-6">
+                            <div class="flex pl-10 relative">
+                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-medium text-neutral-800">已签收</h5>
+                                    <p class="text-sm text-neutral-600">2023-05-15 10:30:00</p>
+                                    <p class="text-sm text-neutral-500 mt-1">上海市浦东新区张江高科技园区</p>
+                                </div>
+                            </div>
+                            <div class="flex pl-10 relative">
+                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
+                                    <i class="fa-solid fa-truck"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-medium text-neutral-800">正在派送</h5>
+                                    <p class="text-sm text-neutral-600">2023-05-15 08:15:00</p>
+                                    <p class="text-sm text-neutral-500 mt-1">上海市浦东新区配送中心</p>
+                                </div>
+                            </div>
+                            <div class="flex pl-10 relative">
+                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-neutral-300 flex items-center justify-center text-white">
+                                    <i class="fa-solid fa-warehouse"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-medium text-neutral-800">到达配送中心</h5>
+                                    <p class="text-sm text-neutral-600">2023-05-14 22:45:00</p>
+                                    <p class="text-sm text-neutral-500 mt-1">上海市浦东新区配送中心</p>
+                                </div>
+                            </div>
+                            <div class="flex pl-10 relative">
+                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-neutral-300 flex items-center justify-center text-white">
+                                    <i class="fa-solid fa-plane"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-medium text-neutral-800">从国外发货</h5>
+                                    <p class="text-sm text-neutral-600">2023-05-12 15:20:00</p>
+                                    <p class="text-sm text-neutral-500 mt-1">美国洛杉矶国际机场</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心服务 -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-800">核心物流服务</h2>
+                <p class="text-neutral-600 mt-4 max-w-2xl mx-auto">我们提供全方位的物流解决方案，满足您的各种需求，让您的货物安全、准时到达目的地。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 服务卡片1 -->
+                <div class="service-card group">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://picsum.photos/id/1074/600/400" alt="国际海运" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-white">国际海运</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-neutral-600 mb-4">提供整柜和拼箱服务，覆盖全球主要港口。专业团队为您优化运输方案，降低成本，确保货物安全抵达。</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                            了解更多 <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 服务卡片2 -->
+                <div class="service-card group">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://picsum.photos/id/1073/600/400" alt="航空货运" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-white">航空货运</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-neutral-600 mb-4">紧急货物优先通道，提供门到门服务。实时追踪系统让您随时了解货物位置，确保时效性。</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                            了解更多 <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 服务卡片3 -->
+                <div class="service-card group">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://picsum.photos/id/1076/600/400" alt="跨境陆运" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-white">跨境陆运</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-neutral-600 mb-4">提供中欧班列、公路运输等多种选择，门到门服务。专业团队处理清关手续，确保货物顺利过境。</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                            了解更多 <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 服务卡片4 -->
+                <div class="service-card group">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://picsum.photos/id/1077/600/400" alt="仓储服务" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-white">仓储服务</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-neutral-600 mb-4">现代化仓库设施，提供短期和长期仓储服务。智能库存管理系统，实时监控库存状态。</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                            了解更多 <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 服务卡片5 -->
+                <div class="service-card group">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://picsum.photos/id/1078/600/400" alt="报关服务" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-white">报关服务</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-neutral-600 mb-4">专业报关团队，熟悉各国法规政策，提供高效、准确的报关服务，确保货物顺利通关。</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                            了解更多 <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 服务卡片6 -->
+                <div class="service-card group">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://picsum.photos/id/1079/600/400" alt="供应链管理" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-white">供应链管理</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-neutral-600 mb-4">提供端到端供应链解决方案，优化供应链流程，降低成本，提高效率，增强企业竞争力。</p>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                            了解更多 <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 全球网络 -->
+    <section id="network" class="py-20 bg-secondary relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <img src="https://picsum.photos/id/1080/1920/1080" alt="世界地图" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-white">全球物流网络</h2>
+                <p class="text-white/80 mt-4 max-w-2xl mx-auto">我们的物流网络覆盖全球150多个国家和地区，为您提供无缝的国际物流服务。</p>
+            </div>
+            
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-10">
+                <div class="relative h-[500px] md:h-[600px] rounded-xl overflow-hidden">
+                    <!-- 世界地图 -->
+                    <img src="https://picsum.photos/id/1081/1600/900" alt="世界地图" class="w-full h-full object-cover opacity-20">
+                    
+                    <!-- 网络节点 -->
+                    <div class="absolute inset-0">
+                        <div class="network-node absolute top-[30%] left-[50%]" data-city="上海"></div>
+                        <div class="network-node absolute top-[40%] left-[20%]" data-city="鹿特丹"></div>
+                        <div class="network-node absolute top-[25%] left-[80%]" data-city="洛杉矶"></div>
+                        <div class="network-node absolute top-[60%] left-[65%]" data-city="悉尼"></div>
+                        <div class="network-node absolute top-[45%] left-[40%]" data-city="迪拜"></div>
+                        <div class="network-node absolute top-[50%] left-[75%]" data-city="新加坡"></div>
+                        <div class="network-node absolute top-[35%] left-[30%]" data-city="伦敦"></div>
+                        <div class="network-node absolute top-[70%] left-[35%]" data-city="约翰内斯堡"></div>
+                        <div class="network-node absolute top-[20%] left-[60%]" data-city="东京"></div>
+                        <div class="network-node absolute top-[55%] left-[25%]" data-city="圣保罗"></div>
+                    </div>
+                    
+                    <!-- 城市标签 -->
+                    <div class="absolute top-[30%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 bg-primary text-white px-3 py-1 rounded text-sm whitespace-nowrap shadow-lg">
+                        上海
+                    </div>
+                    <div class="absolute top-[40%] left-[20%] transform -translate-x-1/2 -translate-y-1/2 bg-primary text-white px-3 py-1 rounded text-sm whitespace-nowrap shadow-lg">
+                        鹿特丹
+                    </div>
+                    <div class="absolute top-[25%] left-[80%] transform -translate-x-1/2 -translate-y-1/2 bg-primary text-white px-3 py-1 rounded text-sm whitespace-nowrap shadow-lg">
+                        洛杉矶
+                    </div>
+                    <div class="absolute top-[60%] left-[65%] transform -translate-x-1/2 -translate-y-1/2 bg-primary text-white px-3 py-1 rounded text-sm whitespace-nowrap shadow-lg">
+                        悉尼
+                    </div>
+                    <div class="absolute top-[45%] left-[40%] transform -translate-x-1/2 -translate-y-1/2 bg-primary text-white px-3 py-1 rounded text-sm whitespace-nowrap shadow-lg">
+                        迪拜
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
+                    <div class="bg-white/5 rounded-xl p-6 text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">150+</div>
+                        <div class="text-white/80">覆盖国家地区</div>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-6 text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">500+</div>
+                        <div class="text-white/80">全球仓库</div>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-6 text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">10k+</div>
+                        <div class="text-white/80">专业团队</div>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-6 text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">24/7</div>
+                        <div class="text-white/80">全天候服务</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-20 bg-neutral-100">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-800">关于智联物流</h2>
+                    <p class="text-neutral-600 mt-4">智联物流成立于2010年，是一家专注于提供全球物流解决方案的综合性物流企业。经过多年的发展，我们已成为行业领先的物流服务提供商。</p>
+                    
+                    <div class="mt-8 space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-check text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-medium text-neutral-800 text-lg">专业团队</h4>
+                                <p class="text-neutral-600 mt-2">拥有一支经验丰富、专业素质高的物流团队，为您提供全方位的物流服务。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-check text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-medium text-neutral-800 text-lg">全球网络</h4>
+                                <p class="text-neutral-600 mt-2">覆盖全球150多个国家和地区的物流网络，让您的货物通达世界每个角落。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-check text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-medium text-neutral-800 text-lg">先进技术</h4>
+                                <p class="text-neutral-600 mt-2">采用先进的物流管理系统，实现物流信息的实时追踪和管理，提高物流效率。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-check text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-medium text-neutral-800 text-lg">优质服务</h4>
+                                <p class="text-neutral-600 mt-2">以客户为中心，提供优质、高效、专业的物流服务，满足客户的各种需求。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <a href="#contact" class="btn-primary inline-flex items-center">
+                            联系我们 <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://picsum.photos/id/1088/800/1000" alt="关于我们" class="w-full h-auto">
+                    </div>
+                    <div class="absolute top-10 -right-5 w-40 h-40 bg-primary/20 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-5 -left-5 w-40 h-40 bg-secondary/20 rounded-full blur-3xl"></div>
+                    
+                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl max-w-xs">
+                        <div class="flex items-center mb-4">
+                            <div class="text-primary text-4xl font-bold mr-4">15+</div>
+                            <div>
+                                <div class="text-neutral-800 font-medium">年行业经验</div>
+                                <div class="text-neutral-600 text-sm">2010年成立</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -top-6 -right-6 bg-white p-6 rounded-xl shadow-xl max-w-xs">
+                        <div class="flex items-center mb-4">
+                            <div class="text-primary text-4xl font-bold mr-4">10k+</div>
+                            <div>
+                                <div class="text-neutral-800 font-medium">满意客户</div>
+                                <div class="text-neutral-600 text-sm">全球合作伙伴</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 客户评价 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-800">客户评价</h2>
+                <p class="text-neutral-600 mt-4 max-w-2xl mx-auto">听听我们的客户如何评价智联物流的服务</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 评价卡片1 -->
+                <div class="bg-neutral-50 rounded-xl p-8 shadow-custom hover:shadow-custom-hover transition-all duration-500 hover:-translate-y-2">
+                    <div class="flex items-center mb-6">
+                        <img src="https://picsum.photos/id/1001/100/100" alt="客户头像" class="w-16 h-16 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-medium text-neutral-800">张先生</h4>
+                            <p class="text-sm text-neutral-600">某国际贸易公司 CEO</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-neutral-600 italic">
+                        "智联物流的服务非常专业，他们为我们提供了定制化的物流解决方案，大大降低了我们的运输成本。团队响应迅速，解决问题能力强，是值得信赖的物流合作伙伴。"
+                    </p>
+                </div>
+                
+                <!-- 评价卡片2 -->
+                <div class="bg-neutral-50 rounded-xl p-8 shadow-custom hover:shadow-custom-hover transition-all duration-500 hover:-translate-y-2">
+                    <div class="flex items-center mb-6">
+                        <img src="https://picsum.photos/id/1002/100/100" alt="客户头像" class="w-16 h-16 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-medium text-neutral-800">李女士</h4>
+                            <p class="text-sm text-neutral-600">某跨境电商创始人</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-neutral-600 italic">
+                        "作为跨境电商企业，物流是我们的核心环节。智联物流的全球网络和高效服务帮助我们快速拓展国际市场，他们的货物追踪系统让我们能够实时掌握货物状态，非常方便。"
+                    </p>
+                </div>
+                
+                <!-- 评价卡片3 -->
+                <div class="bg-neutral-50 rounded-xl p-8 shadow-custom hover:shadow-custom-hover transition-all duration-500 hover:-translate-y-2">
+                    <div class="flex items-center mb-6">
+                        <img src="https://picsum.photos/id/1003/100/100" alt="客户头像" class="w-16 h-16 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-medium text-neutral-800">王先生</h4>
+                            <p class="text-sm text-neutral-600">某制造业采购总监</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="text-neutral-600 italic">
+                        "智联物流的供应链管理服务为我们优化了整个采购流程，降低了库存成本，提高了供应链的灵活性。他们的专业团队能够快速响应我们的需求，提供切实可行的解决方案。"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-20 bg-neutral-800 text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-6">联系我们</h2>
+                    <p class="text-neutral-300 mb-10">无论您有任何问题或需求，我们的团队随时为您提供帮助。填写下方表单或通过以下方式联系我们。</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-medium text-white">地址</h4>
+                                <p class="text-neutral-400">上海市浦东新区张江高科技园区科苑路88号</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-phone text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-medium text-white">电话</h4>
+                                <p class="text-neutral-400">400-888-9999</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-envelope text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-medium text-white">邮箱</h4>
+                                <p class="text-neutral-400">info@zhilian-logistics.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-clock text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-medium text-white">工作时间</h4>
+                                <p class="text-neutral-400">周一至周五: 9:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <h4 class="font-medium text-white mb-4">关注我们</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-colors">
+                                <i class="fa-brands fa-weixin"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-colors">
+                                <i class="fa-brands fa-weibo"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-colors">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-white rounded-xl p-8 shadow-2xl">
+                        <h3 class="text-2xl font-bold text-neutral-800 mb-6">发送消息</h3>
+                        
+                        <form>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-neutral-700 mb-2">姓名</label>
+                                    <input type="text" id="name" class="w-full px-5 py-3 rounded-lg border border-neutral-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" placeholder="请输入您的姓名">
+                                </div>
+                                
+                                <div>
+                                    <label for="email" class="block text-neutral-700 mb-2">邮箱</label>
+                                    <input type="email" id="email" class="w-full px-5 py-3 rounded-lg border border-neutral-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" placeholder="请输入您的邮箱">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="subject" class="block text-neutral-700 mb-2">主题</label>
+                                <input type="text" id="subject" class="w-full px-5 py-3 rounded-lg border border-neutral-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" placeholder="请输入消息主题">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-neutral-700 mb-2">消息内容</label>
+                                <textarea id="message" rows="5" class="w-full px-5 py-3 rounded-lg border border-neutral-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" placeholder="请输入您的消息内容"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary w-full">
+                                发送消息
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-neutral-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-6">智联物流</h3>
+                    <p class="text-neutral-400 mb-6">我们致力于为客户提供专业、高效、可靠的物流解决方案，连接世界每个角落。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors">
+                            <i class="fa-brands fa-weixin"></i>
+                        </a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors">
+                            <i class="fa-brands fa-weibo"></i>
+                        </a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors">
+                            <i class="fa
